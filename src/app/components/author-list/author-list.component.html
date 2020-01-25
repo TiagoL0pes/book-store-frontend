@@ -13,7 +13,7 @@
 
       <div class="col-sm-12">
         <label>Email:</label>
-        <input type="text" class="form-control" formControlName="email" placeholder="Input an email...">
+        <input type="email" class="form-control" formControlName="email" placeholder="Input an email...">
         <div *ngIf="authorForm.touched && authorForm.get('email')?.hasError('required')" class="text-danger">
           Email is required
         </div>
@@ -21,27 +21,28 @@
 
     </div>
 
-    <button class="btn  btn-primary" (click)="save()" [disabled]="authorForm.invalid">Save</button>
-    <button class="btn  btn-secondary ml-2" (click)="reset()">Cancel</button>
-    <hr>
+    <div class="buttons">
+      <button class="btn  btn-primary" (click)="saveOrUpdate()" [disabled]="authorForm.invalid">Save</button>
+      <button class="btn  btn-secondary ml-2" (click)="reset()">Cancel</button>
+    </div>
   </form>
 
   <table class="table table-striped">
     <thead>
       <tr>
-        <th>Id</th>
-        <th>Name</th>
-        <th>Email</th>
+        <th scope="col">Id</th>
+        <th scope="col">Name</th>
+        <th scope="col">Email</th>
+        <th scope="col">Actions</th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let author of categories">
+      <tr *ngFor="let author of authors">
         <td scope="row">{{author.id}}</td>
         <td scope="row">{{author.name}}</td>
         <td scope="row">{{author.email}}</td>
-        <td scope="row"></td>
         <td d-flex justify-content-center>
-          <button class="btn btn-warning mr-2" (click)="update(author)">
+          <button class="btn btn-warning mr-2" (click)="loadAuthor(author)">
             <i class="fas fa-pen"></i>
           </button>
           <button class="btn btn-danger" (click)="delete(author)">
