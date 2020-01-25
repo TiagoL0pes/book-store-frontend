@@ -1,0 +1,16 @@
+.home {
+  outline: none;
+  flex-grow: 1;
+}
+
+.sub {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  >span {
+    outline: none;
+    padding-right: 15px;
+  }
+
+}

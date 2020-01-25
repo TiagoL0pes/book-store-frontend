@@ -1,0 +1,22 @@
+.author-list {
+  height: 80vh;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  button {
+    margin-top: 20px;
+  }
+
+  input {
+    margin-bottom: 10px;
+  }
+}
+
+.row {
+  width: 60vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+}
