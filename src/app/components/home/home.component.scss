@@ -1,7 +1,7 @@
 .content {
+  height: 100%;
   width: 100vw;
   display: flex;
-  justify-content: space-between;
   align-items: center;
 
   .text {
@@ -16,7 +16,6 @@
 
   .image {
     width: 50%;
-    height: 50%;
   }
 
 }

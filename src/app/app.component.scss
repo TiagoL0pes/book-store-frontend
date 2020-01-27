@@ -24,16 +24,12 @@
   .content {
     grid-area: 'content';
     background-color: #fff;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
   }
 
   .footer {
     grid-area: 'footer';
     background-color: #AEB3DA;
-    
+
     display: flex;
     justify-content: center;
     align-items: center;

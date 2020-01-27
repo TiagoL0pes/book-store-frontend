@@ -33,11 +33,10 @@
       </div>
     </div>
 
-
-
-    <button class="btn  btn-primary" (click)="save()" [disabled]="bookForm.invalid">Save</button>
-    <button class="btn  btn-secondary ml-2" (click)="reset()">Cancel</button>
-    <hr>
+    <div class="buttons">
+      <button class="btn  btn-primary" (click)="saveOrUpdate()" [disabled]="authorForm.invalid">Save</button>
+      <button class="btn  btn-secondary ml-2" (click)="reset()">Cancel</button>
+    </div>
   </form>
 
   <table class="table table-striped">
