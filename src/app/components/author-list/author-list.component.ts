@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { GenericService } from '../../shared/services/generic.service';
-import { Author } from '../../shared/models/author';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { BehaviorSubject } from 'rxjs';
+import { Author } from '../../shared/models/author';
+import { AuthorService } from '../../shared/services/author.service';
 
 @Component({
   selector: 'app-author-list',
@@ -17,7 +17,7 @@ export class AuthorListComponent implements OnInit {
 
   constructor(
     private _formBuilder: FormBuilder,
-    private _service: GenericService<Author>
+    private _service: AuthorService
   ) {
     this.service.endpoint = 'authors';
   }

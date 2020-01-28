@@ -5,4 +5,8 @@ export class Book {
     isbn: string;
     title: string;
     author: Author;
+
+    constructor() {
+        this.author = new Author();
+    }
 }
