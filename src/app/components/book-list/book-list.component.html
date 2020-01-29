@@ -22,9 +22,11 @@
       <div class="col-sm-12">
         <div class="form-group">
           <label>Author</label>
-          <select class="form-control" formControlName="author">
-            <option [ngValue]="null" selected>Select an author</option>
-            <option *ngFor="let author of authors" [value]="author.id"> {{author.name}}</option>
+          <select class="form-control" formControlName="author" [compareWith]="compareTo">
+            <option value="null" disabled seleted>Select an author</option>
+            <option *ngFor="let author of authors" [ngValue]="author">
+              {{author.name}}
+            </option>
           </select>
           <div *ngIf="bookForm.touched && bookForm.get('author')?.hasError('required')" class="text-danger">
             Author is required

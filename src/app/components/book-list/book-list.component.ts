@@ -102,11 +102,15 @@ export class BookListComponent implements OnInit {
   formToBook() {
     Object.keys(this.bookForm.controls).forEach(key => {
       if (key === 'author') {
-        this.book.author.id = this.bookForm.controls[key].value;
+        this.book.author = this.bookForm.controls[key].value;
       } else {
         this.book[key] = this.bookForm.controls[key].value;
       }
     });
+  }
+
+  compareTo(c1, c2): boolean {
+    return c1 && c2 ? c1.id === c2.id : c1 === c2;
   }
 
   get formBuilder() {
