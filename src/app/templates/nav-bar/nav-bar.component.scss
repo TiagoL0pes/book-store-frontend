@@ -3,6 +3,13 @@
   flex-grow: 1;
 }
 
+i {
+  &:hover {
+    color: #fff;
+    font-size: 1.2em;
+  }
+}
+
 .sub {
   display: flex;
   justify-content: space-between;
