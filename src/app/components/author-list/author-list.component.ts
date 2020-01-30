@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { BehaviorSubject } from 'rxjs';
 import { Author } from '../../shared/models/author';
 import { AuthorService } from '../../shared/services/author.service';
+import { MessageService } from '../../shared/services/message.service';
 
 @Component({
   selector: 'app-author-list',
@@ -17,7 +18,8 @@ export class AuthorListComponent implements OnInit {
 
   constructor(
     private _formBuilder: FormBuilder,
-    private _service: AuthorService
+    private _service: AuthorService,
+    private _messageService: MessageService
   ) {
     this.service.endpoint = 'authors';
   }
@@ -37,7 +39,7 @@ export class AuthorListComponent implements OnInit {
 
     this.service.list()
       .subscribe((res: Array<Author>) => this.authors = res,
-        error => console.log(error),
+        error => this.messageService.showErrorMessage(),
         () => this.loading$.next(false));
   }
 
@@ -50,21 +52,32 @@ export class AuthorListComponent implements OnInit {
 
     if (this.author.id) {
       this.service.update(this.author.id, this.author)
-        .subscribe(res => this.updateList(res),
-          error => console.log(error),
+        .subscribe(res => {
+          this.messageService.showSuccessMessage('Author has been updated');
+          this.updateList(res)
+        }, error => this.messageService.showErrorMessage(),
           () => this.reset());
     } else {
       this.service.save(this.author)
-        .subscribe(res => this.updateList(res),
-          error => console.log(error),
+        .subscribe(res => {
+          this.messageService.showSuccessMessage('Author has been added');
+          this.updateList(res);
+        }, error => this.messageService.showErrorMessage(),
           () => this.reset());
     }
   }
 
   delete(author) {
-    this.service.delete(author.id)
-      .subscribe(res => this.list(),
-        error => console.log(error));
+    this.messageService.showConfirmDialog()
+      .then((result) => {
+        if (result.value) {
+          this.service.delete(author.id)
+            .subscribe(res => {
+              this.messageService.showDeleteMessage('Author has been deleted.');
+              this.list();
+            }, error => this.messageService.showErrorMessage());
+        }
+      });
   }
 
   reset() {
@@ -97,6 +110,10 @@ export class AuthorListComponent implements OnInit {
 
   get service() {
     return this._service;
+  }
+
+  get messageService() {
+    return this._messageService;
   }
 
 }

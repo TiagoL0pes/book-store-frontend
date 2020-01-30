@@ -5,6 +5,7 @@ import { Author } from '../../shared/models/author';
 import { Book } from '../../shared/models/book';
 import { AuthorService } from '../../shared/services/author.service';
 import { BookService } from '../../shared/services/book.service';
+import { MessageService } from '../../shared/services/message.service';
 
 @Component({
   selector: 'app-book-list',
@@ -21,7 +22,8 @@ export class BookListComponent implements OnInit {
   constructor(
     private _formBuilder: FormBuilder,
     private _service: BookService,
-    private _authorService: AuthorService
+    private _authorService: AuthorService,
+    private _messageService: MessageService
   ) {
     this.service.endpoint = 'books';
     this.authorService.endpoint = 'authors';
@@ -40,8 +42,8 @@ export class BookListComponent implements OnInit {
 
   loadAuthors() {
     this.authorService.list()
-      .subscribe((res: Array<Author>) => this.authors = res),
-      error => console.log(error);
+      .subscribe((res: Array<Author>) => this.authors = res,
+        error => this.messageService.showErrorMessage());
   }
 
   list() {
@@ -49,7 +51,7 @@ export class BookListComponent implements OnInit {
 
     this.service.list()
       .subscribe((res: Array<Book>) => this.books = res,
-        error => console.log(error),
+        error => this.messageService.showErrorMessage(),
         () => this.loading$.next(false));
   }
 
@@ -61,21 +63,32 @@ export class BookListComponent implements OnInit {
     this.formToBook();
     if (this.book.id) {
       this.service.update(this.book.id, this.book)
-        .subscribe(res => this.updateList(res),
-          error => console.log(error),
+        .subscribe(res => {
+          this.messageService.showSuccessMessage('Book has been updated')
+          this.updateList(res)
+        }, error => this.messageService.showErrorMessage(),
           () => this.reset());
     } else {
       this.service.save(this.book)
-        .subscribe(res => this.updateList(res),
-          error => console.log(error),
+        .subscribe(res => {
+          this.messageService.showSuccessMessage('Book has been added')
+          this.updateList(res)
+        }, error => this.messageService.showErrorMessage(),
           () => this.reset());
     }
   }
 
   delete(book) {
-    this.service.delete(book.id)
-      .subscribe(res => this.list(),
-        error => console.log(error));
+    this.messageService.showConfirmDialog()
+      .then((result) => {
+        if (result.value) {
+          this.service.delete(book.id)
+            .subscribe(res => {
+              this.messageService.showDeleteMessage('Book has been deleted.');
+              this.list()
+            }, error => this.messageService.showErrorMessage());
+        }
+      });
   }
 
   reset() {
@@ -123,6 +136,10 @@ export class BookListComponent implements OnInit {
 
   get authorService() {
     return this._authorService;
+  }
+
+  get messageService() {
+    return this._messageService;
   }
 
 }
