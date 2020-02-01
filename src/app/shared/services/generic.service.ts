@@ -22,7 +22,7 @@ export class GenericService<T> {
   }
 
   list(): Observable<Array<T>> {
-    return this.http.post<Array<T>>(`${environment.api}/${this.endpoint}/list`, {});
+    return this.http.get<Array<T>>(`${environment.api}/${this.endpoint}`);
   }
 
   update(id: string, form: T): Observable<T> {
