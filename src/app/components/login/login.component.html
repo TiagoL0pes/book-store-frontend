@@ -1,0 +1,51 @@
+<div class="container">
+  <div class="login">
+    <h4 class="sign-in">Sign In</h4>
+
+    <form [formGroup]="loginForm">
+      <div class="column">
+        <div class="col-sm-12">
+          <label>Email</label>
+          <input type="text" class="form-control" formControlName="email" placeholder="Input your email...">
+          <div *ngIf="loginForm.touched && loginForm.get('email')?.hasError('required')" class="text-danger">
+            Email is required
+          </div>
+        </div>
+
+        <div class="col-sm-12">
+          <label>Password</label>
+          <input type="password" class="form-control" formControlName="password" placeholder="Input your password...">
+          <div *ngIf="loginForm.touched && loginForm.get('password')?.hasError('required')" class="text-danger">
+            Password is required
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-12">
+        <button class="btn btn-primary" (click)="login()" [disabled]="loginForm.invalid">Login</button>
+      </div>
+    </form>
+
+    <div class="col-sm-12 text-center">
+      <div class="d-flex justify-content-around mt-4">
+        <a href="https://www.facebook.com" target="_blank" class="link">
+          <i class="fab fa-facebook-f"></i>
+        </a>
+
+        <a href="https://twitter.com" target="_blank" class="link">
+          <i class="fab fa-twitter"></i>
+        </a>
+
+        <a href="https://www.linkedin.com" target="_blank" class="link">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+
+        <a href="https://github.com" target="_blank" class="link">
+          <i class="fab fa-github"></i>
+        </a>
+      </div>
+    </div>
+
+  </div>
+
+</div>

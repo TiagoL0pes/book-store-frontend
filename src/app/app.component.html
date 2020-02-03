@@ -1,5 +1,5 @@
 <div class="app">
-  <app-nav-bar class="header"></app-nav-bar>
+  <app-nav-bar class="header" *ngIf="state$ | async"></app-nav-bar>
   <app-content class="content"> </app-content>
-  <app-footer class="footer"></app-footer>
+  <app-footer class="footer" *ngIf="state$ | async"></app-footer>
 </div>

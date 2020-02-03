@@ -55,15 +55,15 @@
     </thead>
     <tbody>
       <tr *ngFor="let book of books">
-        <td scope="row">{{book.id}}</td>
-        <td scope="row">{{book.isbn}}</td>
-        <td scope="row">{{book.title}}</td>
-        <td scope="row">{{book.author?.name}}</td>
-        <td class="d-flex justify-content-center">
-          <button class="btn btn-warning mr-2" (click)="loadBook(book)">
+        <td scope="row" class="align-middle">{{book.id}}</td>
+        <td scope="row" class="align-middle">{{book.isbn}}</td>
+        <td scope="row" class="align-middle">{{book.title}}</td>
+        <td scope="row" class="align-middle">{{book.author?.name}}</td>
+        <td class="d-flex justify-content-center align-items-center">
+          <button class="btn btn-outline text-success mr-2" (click)="loadBook(book)">
             <i class="fas fa-pen"></i>
           </button>
-          <button class="btn btn-danger" (click)="delete(book)">
+          <button class="btn btn-outline text-danger" (click)="delete(book)">
             <i class="fas fa-trash"></i>
           </button>
         </td>

@@ -3,24 +3,33 @@ import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
 import { BookListComponent } from './components/book-list/book-list.component';
 import { AuthorListComponent } from './components/author-list/author-list.component';
-
+import { LoginComponent } from './components/login/login.component';
+import { AuthGuard } from './shared/auth-guard/auth.guard';
 
 const routes: Routes = [
   {
+    path: 'login',
+    component: LoginComponent
+  },
+  {
     path: 'home',
-    component: HomeComponent
+    component: HomeComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'books',
-    component: BookListComponent
+    component: BookListComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'authors',
-    component: AuthorListComponent
+    component: AuthorListComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: '**',
-    component: HomeComponent
+    component: HomeComponent,
+    canActivate: [AuthGuard]
   }
 ];
 

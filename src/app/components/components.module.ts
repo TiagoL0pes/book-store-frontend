@@ -6,6 +6,7 @@ import { AuthorListComponent } from './author-list/author-list.component';
 import { BookListComponent } from './book-list/book-list.component';
 import { HomeComponent } from './home/home.component';
 import { PageTitleComponent } from './page-title/page-title.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -13,6 +14,7 @@ import { PageTitleComponent } from './page-title/page-title.component';
     HomeComponent,
     AuthorListComponent,
     PageTitleComponent,
+    LoginComponent,
   ],
   exports: [
     BookListComponent,
