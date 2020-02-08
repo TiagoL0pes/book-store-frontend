@@ -23,6 +23,10 @@ export class LoginService {
     localStorage.setItem('session', JSON.stringify(session));
   }
 
+  removeSession() {
+    localStorage.removeItem('session');
+  }
+
   get http() {
     return this._http;
   }

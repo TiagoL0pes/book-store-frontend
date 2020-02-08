@@ -26,7 +26,7 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
     const session = JSON.parse(localStorage.getItem('session'));
 
-    if (session === null) {
+    if (session !== null) {
       this.router.navigate(['home']);
     }
 

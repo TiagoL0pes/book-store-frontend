@@ -38,19 +38,25 @@
     </div>
 
     <div class="buttons">
-      <button class="btn  btn-primary" (click)="saveOrUpdate()" [disabled]="bookForm.invalid">Save</button>
-      <button class="btn  btn-secondary ml-2" (click)="reset()">Cancel</button>
+      <button class="btn  btn-primary" (click)="saveOrUpdate()" [disabled]="bookForm.invalid">
+        <i class="fas fa-check"></i>
+        Save
+      </button>
+      <button class="btn  btn-secondary ml-2" (click)="reset()">
+      <i class="fas fa-times"></i>
+        Cancel
+      </button>
     </div>
   </form>
 
   <table class="table table-striped">
     <thead>
       <tr>
-        <th>Id</th>
-        <th>Isbn</th>
-        <th>Title</th>
-        <th>Author</th>
-        <th>Actions</th>
+        <th scope="col">Id</th>
+        <th scope="col">Isbn</th>
+        <th scope="col">Title</th>
+        <th scope="col">Author</th>
+        <th scope="col" class="text-center">Actions</th>
       </tr>
     </thead>
     <tbody>

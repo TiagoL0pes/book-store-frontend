@@ -24,8 +24,14 @@
     </div>
 
     <div class="buttons">
-      <button class="btn  btn-primary" (click)="saveOrUpdate()" [disabled]="authorForm.invalid">Save</button>
-      <button class="btn  btn-secondary ml-2" (click)="reset()">Cancel</button>
+      <button class="btn  btn-primary" (click)="saveOrUpdate()" [disabled]="authorForm.invalid">
+        <i class="fas fa-check"></i>
+        Save
+      </button>
+      <button class="btn  btn-secondary ml-2" (click)="reset()">
+        <i class="fas fa-times"></i>
+        Cancel
+      </button>
     </div>
   </form>
 
@@ -35,7 +41,7 @@
         <th scope="col">Id</th>
         <th scope="col">Name</th>
         <th scope="col">Email</th>
-        <th scope="col">Actions</th>
+        <th scope="col" class="text-center">Actions</th>
       </tr>
     </thead>
     <tbody>
