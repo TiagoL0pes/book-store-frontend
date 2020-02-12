@@ -4,9 +4,11 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AuthorListComponent } from './author-list/author-list.component';
 import { BookListComponent } from './book-list/book-list.component';
+import { DropdownMenuComponent } from './dropdown-menu/dropdown-menu.component';
 import { HomeComponent } from './home/home.component';
-import { PageTitleComponent } from './page-title/page-title.component';
 import { LoginComponent } from './login/login.component';
+import { PageTitleComponent } from './page-title/page-title.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -15,16 +17,19 @@ import { LoginComponent } from './login/login.component';
     AuthorListComponent,
     PageTitleComponent,
     LoginComponent,
+    DropdownMenuComponent,
   ],
   exports: [
     BookListComponent,
     AuthorListComponent,
-    HomeComponent
+    HomeComponent,
+    DropdownMenuComponent
   ],
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    RouterModule
   ]
 })
 export class ComponentsModule { }

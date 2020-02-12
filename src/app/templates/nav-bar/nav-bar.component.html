@@ -1,12 +1,20 @@
-<i class="fas fa-home home" [routerLink]="['home']"> Store</i>
+<span>
+  <i class="fas fa-home home" [routerLink]="['home']"></i>
+  Store
+</span>
+
 <div class="sub">
   <span [routerLink]="['authors']">
-    <i class="fas fa-user-tie"> Authors</i>
+    <i class="fas fa-user-tie"></i>
+    Authors
   </span>
+
   <span [routerLink]="['books']">
-    <i class="fas fa-book"> Books</i>
+    <i class="fas fa-book"></i>
+    Books
   </span>
+  
   <span>
-    <i class="fas fa-cog"> Options</i>
+    <app-dropdown-menu></app-dropdown-menu>
   </span>
 </div>

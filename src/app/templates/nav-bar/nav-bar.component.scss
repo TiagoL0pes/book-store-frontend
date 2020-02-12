@@ -3,13 +3,12 @@
   flex-grow: 1;
 }
 
-i {
+span {
   &:hover {
     color: #fff;
-    font-size: 1.2em;
   }
 
-  transition: font-size .5s;
+  transition: color .5s;
 }
 
 .sub {
@@ -20,6 +19,7 @@ i {
   >span {
     outline: none;
     padding-right: 15px;
+    font-weight: 400;
   }
 
 }
