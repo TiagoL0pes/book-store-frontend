@@ -2,13 +2,17 @@ import { Injectable } from '@angular/core';
 import { CanActivate, Router } from '@angular/router';
 import * as jwt_decode from 'jwt-decode';
 import { LoginService } from '../services/login.service';
+import { MessageService } from '../services/message.service';
+import { Message } from '../enums/message.enum';
+import { Route } from '../enums/route.enum';
 
 @Injectable({ providedIn: 'root' })
 export class AuthGuard implements CanActivate {
 
     constructor(
         private router: Router,
-        private service: LoginService
+        private service: LoginService,
+        private messageService: MessageService
     ) { }
 
     canActivate(): boolean {
@@ -24,9 +28,8 @@ export class AuthGuard implements CanActivate {
             this.service.removeSession();
         }
 
-        this.router.navigate(['login']);
-
-        return false;
+        this.messageService.showLogoutMessage(Message.SESSION_EXPIRED);
+        this.router.navigate([Route.LOGIN]);
     }
 
 }

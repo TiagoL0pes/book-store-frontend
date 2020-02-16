@@ -5,15 +5,36 @@
   align-items: center;
 
   .login {
+    .container-login {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      margin-bottom: 10px;
+
+      .sign {
+        &-in,
+        &-up {
+          background-color: #fefefe;
+          flex: 0 0 40%;
+          min-height: 45px;
+          outline: none;
+          box-shadow: none;
+          transition: background-color .3s;
+
+          &--selected {
+            color: #fff;
+            background-color: dodgerblue;
+          }
+        }
+      }
+    }
+
     min-width: 300px;
     padding: 30px 10px;
     border: solid 1px #cecece;
     border-radius: 8px;
     background-color: #fff;
-
-    .sign-in {
-      text-align: center;
-    }
 
     input {
       margin-bottom: 10px;

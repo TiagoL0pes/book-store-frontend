@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import swal from 'sweetalert2';
+import { Message } from '../enums/message.enum';
 
 @Injectable({
   providedIn: 'root'
@@ -8,7 +9,7 @@ export class MessageService {
 
   constructor() { }
 
-  showSuccessMessage(title = 'Your changes has been successfully', position?) {
+  showSuccessMessage(title = Message.CHANGE_SUCCESS, position?) {
     swal.fire({
       position: position || 'center',
       icon: 'success',
@@ -18,7 +19,17 @@ export class MessageService {
     });
   }
 
-  showErrorMessage(title = 'Oops...', text = 'Something went wrong!') {
+  showLogoutMessage(title = Message.LOGOUT, position?) {
+    swal.fire({
+      position: position || 'center',
+      icon: 'info',
+      title,
+      showConfirmButton: false,
+      timer: 1000
+    });
+  }
+
+  showErrorMessage(title = Message.OOPS, text = Message.GENERAL_ERROR) {
     swal.fire({
       icon: 'error',
       title,
@@ -38,7 +49,7 @@ export class MessageService {
     });
   }
 
-  showDeleteMessage(message = 'Has been deleted.') {
+  showDeleteMessage(message = Message.ACTION_DELETE) {
     swal.fire(
       'Deleted!',
       message,

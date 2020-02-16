@@ -5,24 +5,25 @@ import { BookListComponent } from './components/book-list/book-list.component';
 import { AuthorListComponent } from './components/author-list/author-list.component';
 import { LoginComponent } from './components/login/login.component';
 import { AuthGuard } from './shared/auth-guard/auth.guard';
+import { Route } from './shared/enums/route.enum';
 
 const routes: Routes = [
   {
-    path: 'login',
+    path: Route.LOGIN,
     component: LoginComponent
   },
   {
-    path: 'home',
+    path: Route.HOME,
     component: HomeComponent,
     canActivate: [AuthGuard]
   },
   {
-    path: 'books',
+    path: Route.BOOKS,
     component: BookListComponent,
     canActivate: [AuthGuard]
   },
   {
-    path: 'authors',
+    path: Route.AUTHORS,
     component: AuthorListComponent,
     canActivate: [AuthGuard]
   },

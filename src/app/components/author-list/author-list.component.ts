@@ -4,6 +4,7 @@ import { BehaviorSubject } from 'rxjs';
 import { Author } from '../../shared/models/author';
 import { AuthorService } from '../../shared/services/author.service';
 import { MessageService } from '../../shared/services/message.service';
+import { Message } from '../../shared/enums/message.enum';
 
 @Component({
   selector: 'app-author-list',
@@ -53,14 +54,14 @@ export class AuthorListComponent implements OnInit {
     if (this.author.id) {
       this.service.update(this.author.id, this.author)
         .subscribe(res => {
-          this.messageService.showSuccessMessage('Author has been updated');
+          this.messageService.showSuccessMessage(Message.AUTHOR_UPDATED);
           this.updateList(res)
         }, error => this.messageService.showErrorMessage(),
           () => this.reset());
     } else {
       this.service.save(this.author)
         .subscribe(res => {
-          this.messageService.showSuccessMessage('Author has been added');
+          this.messageService.showSuccessMessage(Message.AUTHOR_ADDED);
           this.updateList(res);
         }, error => this.messageService.showErrorMessage(),
           () => this.reset());
@@ -73,7 +74,7 @@ export class AuthorListComponent implements OnInit {
         if (result.value) {
           this.service.delete(author.id)
             .subscribe(res => {
-              this.messageService.showDeleteMessage('Author has been deleted.');
+              this.messageService.showDeleteMessage(Message.AUTHOR_DELETED);
               this.list();
             }, error => this.messageService.showErrorMessage());
         }

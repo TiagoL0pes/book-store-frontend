@@ -1,6 +1,9 @@
 <div class="container">
   <div class="login">
-    <h4 class="sign-in">Sign In</h4>
+    <div class="container-login">
+      <button class="btn sign-in" [class.sign-in--selected]="signIn" (click)="toggleForm(true)">Sign In</button>
+      <button class="btn sign-up" [class.sign-up--selected]="signUp" (click)="toggleForm(false)">Sign Up</button>
+    </div>
 
     <form [formGroup]="loginForm">
       <div class="column">
@@ -22,7 +25,7 @@
       </div>
 
       <div class="col-sm-12">
-        <button class="btn btn-primary" (click)="login()" [disabled]="loginForm.invalid">Login</button>
+        <button class="btn btn-primary" (click)="login(signIn)" [disabled]="loginForm.invalid" [innerText]="signIn ? 'Sign In' : 'Sign Up'" ></button>
       </div>
     </form>
 
